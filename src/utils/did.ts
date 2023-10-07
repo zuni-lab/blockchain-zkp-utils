@@ -6,8 +6,7 @@ import {
     utils,
     web3,
   } from '@coral-xyz/anchor';
-  import {sha1} from '@noble/hashes/sha1';
-  import {sha256} from '@noble/hashes/sha256';
+import {sha1} from '@noble/hashes/sha1';
 import { MULTIBASE_PREFIX, VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR, ZUNI_SOLANA_DID_PREFIX } from '../constants';
 import { VerifiableDataRegistryType } from '../types';
 
@@ -52,13 +51,13 @@ import { VerifiableDataRegistryType } from '../types';
     did: string,
     keyId: string,
   ) => {
-    const authenticationSeed = sha256(
+    const authenticationSeed = sha1(
       did + keyId + VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR.authentication,
     );
-    const assertionSeed = sha256(
+    const assertionSeed = sha1(
       did + keyId + VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR.assertion,
     );
-    const keyAgreementSeed = sha256(
+    const keyAgreementSeed = sha1(
       did + keyId + VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR.keyAgreement,
     );
   
