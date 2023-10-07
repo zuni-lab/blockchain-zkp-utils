@@ -1,0 +1,5 @@
+{
+    "directory": ["./src/utils", "./src/constants", "src/types"],
+    "exclude": ["__mock__", "__mocks__", "test", "build"],
+    "delete": true
+  }

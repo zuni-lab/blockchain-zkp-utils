@@ -1,15 +1,17 @@
 {
-  "name": "typescript-npm-package-template",
-  "version": "0.0.0-development",
-  "description": "A template for creating npm packages using TypeScript and VSCode",
+  "name": "blockchain-zkp-utils",
+  "version": "0.0.2",
+  "description": "A collection of utilities for working with zk-SNARKs on Solana",
   "main": "./lib/index.js",
   "files": [
     "lib/**/*"
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
+    "gen": "barrelsby --config .barrelsby.json -q",
     "clean": "rm -rf ./lib/",
     "cm": "cz",
+    "ci": "npm install",
     "lint": "eslint ./src/ --fix",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
@@ -19,14 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ryansonshine/typescript-npm-package-template.git"
+    "url": "git+https://github.com/DV-Lab/blockchain-zkp-utils"
   },
   "license": "MIT",
-  "author": {
-    "name": "Ryan Sonshine",
-    "email": "ryansonshine@users.noreply.github.com",
-    "url": "https://github.com/ryansonshine"
-  },
+  "author": "tranhuyducseven",
   "engines": {
     "node": ">=12.0"
   },
@@ -46,14 +44,16 @@
   },
   "homepage": "https://github.com/ryansonshine/typescript-npm-package-template#readme",
   "devDependencies": {
+    "@coral-xyz/anchor": "0.28.0",
     "@ryansonshine/commitizen": "^4.2.8",
     "@ryansonshine/cz-conventional-changelog": "^3.3.4",
     "@types/jest": "^27.5.2",
     "@types/node": "^12.20.11",
-    "@typescript-eslint/eslint-plugin": "^4.22.0",
-    "@typescript-eslint/parser": "^4.22.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "barrelsby": "^2.8.0",
     "conventional-changelog-conventionalcommits": "^5.0.0",
-    "eslint": "^7.25.0",
+    "eslint": "^8.51.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
@@ -64,7 +64,7 @@
     "semantic-release": "^21.0.1",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
-    "typescript": "^4.2.4"
+    "typescript": "^4.9.5"
   },
   "config": {
     "commitizen": {
@@ -72,7 +72,10 @@
     }
   },
   "lint-staged": {
-    "*.ts": "eslint --cache --cache-location .eslintcache --fix"
+    "*.ts": "eslint --fix"
+  },
+  "peerDependencies": {
+    "@coral-xyz/anchor": "0.28.0"
   },
   "release": {
     "branches": [
