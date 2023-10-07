@@ -1,6 +1,6 @@
 {
-  "name": "@dvlab/blockchain-zkp-utilities",
-  "version": "0.0.2",
+  "name": "dvlab-blockchain-zkp-utils",
+  "version": "0.0.1",
   "description": "A collection of utilities for working with zk-SNARKs on Solana",
   "main": "./lib/index.js",
   "files": [
@@ -77,6 +77,9 @@
   },
   "peerDependencies": {
     "@coral-xyz/anchor": "0.28.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "release": {
     "branches": [
