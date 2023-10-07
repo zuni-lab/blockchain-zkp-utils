@@ -22,6 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
+          registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm run ci
       - name: Build
@@ -29,8 +30,11 @@ jobs:
       - name: Test
         run: npm test
       - name: Publish to npm
-        run: npm publish
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' > .npmrc
+          cat .npmrc
+          npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Upload Code Coverage
         uses: codecov/codecov-action@v3.1.0
