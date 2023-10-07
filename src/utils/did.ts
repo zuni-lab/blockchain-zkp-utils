@@ -8,8 +8,8 @@ import {
   } from '@coral-xyz/anchor';
   import {sha1} from '@noble/hashes/sha1';
   import {sha256} from '@noble/hashes/sha256';
-import { VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR, ZUNI_SOLANA_DID_PREFIX } from '../constants';
-import { TVerifiableDataRegistry } from '../types';
+import { MULTIBASE_PREFIX, VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR, ZUNI_SOLANA_DID_PREFIX } from '../constants';
+import { VerifiableDataRegistryType } from '../types';
 
   
   export const getDidSeed = (did: string): number[] => {
@@ -98,7 +98,7 @@ import { TVerifiableDataRegistry } from '../types';
   };
   
   export const getNumberOfDidsOwnedByController = async (
-    verifiableDataRegistryProgram: Program<TVerifiableDataRegistry>,
+    verifiableDataRegistryProgram: Program<VerifiableDataRegistryType>,
     controllerPublicKey: web3.PublicKey,
   ): Promise<number> => {
     const accounts = await verifiableDataRegistryProgram.account.didDocument.all([
@@ -118,5 +118,26 @@ import { TVerifiableDataRegistry } from '../types';
     const buffer = Buffer.from(hashed);
     const did = ZUNI_SOLANA_DID_PREFIX.devnet + buffer.toString('hex');
     return did;
+  };
+  
+
+
+
+  export const decodeMultibase = (data: string): Buffer => {
+    const identifier = data[0];
+    const encodedData = data.slice(1);
+
+  
+    switch (identifier) {
+      case MULTIBASE_PREFIX.base64: {
+        return Buffer.from(encodedData, 'base64');
+      }
+      case MULTIBASE_PREFIX.base58btc: {
+        return utils.bytes.bs58.decode(encodedData);
+      }
+      default: {
+        throw new Error('Unsupported multibase prefix');
+      }
+    }
   };
   

@@ -1,6 +1,6 @@
 {
   "name": "dvlab-blockchain-zkp-utils",
-  "version": "0.0.1",
+  "version": "0.0.7",
   "description": "A collection of utilities for working with zk-SNARKs on Solana",
   "main": "./lib/index.js",
   "files": [

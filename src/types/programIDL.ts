@@ -1,5 +1,5 @@
 
-export type TVerifiableDataRegistry = {
+export type VerifiableDataRegistryType = {
     version: '0.1.0';
     name: 'verifiable_data_registry';
     instructions: [
