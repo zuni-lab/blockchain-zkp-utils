@@ -8,8 +8,8 @@ import {
   } from '@coral-xyz/anchor';
   import {sha1} from '@noble/hashes/sha1';
   import {sha256} from '@noble/hashes/sha256';
-import { VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR, ZUNI_SOLANA_DID_PREFIX } from 'constants/verification';
-import { TVerifiableDataRegistry } from 'types/verification';
+import { VERIFIABLE_DATA_REGISTRY_DISCRIMINATOR, ZUNI_SOLANA_DID_PREFIX } from '../constants';
+import { TVerifiableDataRegistry } from '../types';
 
   
   export const getDidSeed = (did: string): number[] => {
